@@ -33,17 +33,17 @@ class WhitebitExchange extends AbstractExchange
             $cache->put($data);
         }
 
-        foreach ($data as $symbol => $info) {
+        foreach ($data as $info) {
             if (($info['type'] ?? '') !== 'spot') {
                 continue;
             }
 
-            if (!isset($info['stock'], $info['money'])) {
+            if (!isset($info['name'], $info['stock'], $info['money'])) {
                 continue;
             }
 
-            // BTC_USDT → BTC/USDT
-            $this->symbolMap[$symbol] =
+            // ETH_BTC → ETH/BTC
+            $this->symbolMap[$info['name']] =
                 $info['stock'] . '/' . $info['money'];
         }
     }
@@ -67,10 +67,7 @@ class WhitebitExchange extends AbstractExchange
                 continue;
             }
 
-            if (
-                !isset($ticker['last_price']) ||
-                $ticker['last_price'] === null
-            ) {
+            if (!isset($ticker['last_price'])) {
                 continue;
             }
 

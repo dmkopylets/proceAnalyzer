@@ -19,8 +19,8 @@ services:
     build:
       context: .
       dockerfile: ../../docker/${APP_NAME}/php-fpm/Dockerfile
-    depends_on:
-      - postgres
+#    depends_on:
+#      - postgres
     environment:
       XDEBUG_MODE: off
       XDEBUG_CONFIG:

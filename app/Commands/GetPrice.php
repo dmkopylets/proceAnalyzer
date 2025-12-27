@@ -27,22 +27,42 @@ class GetPrice extends Command
      */
     public function handle()
     {
-        $manager = new ExchangeManager();
+//        $manager = new ExchangeManager();
+//
+//        foreach ($manager->all() as $exchange) {
+//            $this->info(strtoupper($exchange->getName()));
+//
+//            $pairs = $exchange->getPairs();
+//            $prices = $exchange->getPrices();
+//
+//            foreach (array_slice($pairs, 0, 5) as $pair) {
+//                if (isset($prices[$pair])) {
+//                    $this->line("$pair : {$prices[$pair]}");
+//                }
+//            }
+//
+//            $this->line('');
+//        }
+            $manager = new ExchangeManager();
 
-        foreach ($manager->all() as $exchange) {
-            $this->info(strtoupper($exchange->getName()));
+            foreach ($manager->all() as $exchange) {
+                $this->info(strtoupper($exchange->getName()));
 
-            $pairs = $exchange->getPairs();
-            $prices = $exchange->getPrices();
+                $prices = $exchange->getPrices();
 
-            foreach (array_slice($pairs, 0, 5) as $pair) {
-                if (isset($prices[$pair])) {
-                    $this->line("$pair : {$prices[$pair]}");
+                if (empty($prices)) {
+                    $this->error('No prices received');
+                    continue;
                 }
+
+                foreach (array_slice($prices, 0, 20) as $pair => $price) {
+                    $this->line("$pair : $price");
+                }
+
+                $this->line('');
             }
 
-            $this->line('');
-        }
+            return self::SUCCESS;
     }
 
     /**

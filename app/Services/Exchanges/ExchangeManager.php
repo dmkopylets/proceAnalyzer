@@ -9,7 +9,7 @@ class ExchangeManager
     public function all(): array
     {
         return [
-            new BinanceExchange(),
+//            new BinanceExchange(),
             // new BybitExchange(),
             new WhitebitExchange(),
             // new PoloniexExchange(),
