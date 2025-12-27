@@ -7,10 +7,10 @@ local-compose-file:
 	$(eval DOCKER_COMPOSE_FILE = -f docker-compose.yml)
 
 dc-build:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) build php-fpm
+	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) build postgres php-fpm
 
 dc-up:
-	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) up -d php-fpm
+	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) up -d postgres php-fpm
 
 dc-down:
 	$(DOCKER_COMPOSE) $(DOCKER_COMPOSE_FILE) down --remove-orphans

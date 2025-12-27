@@ -9,11 +9,13 @@ class ExchangeManager
     public function all(): array
     {
         return [
-//            new BinanceExchange(),
-            // new BybitExchange(),
+            new BinanceExchange(),
             new WhitebitExchange(),
-            // new PoloniexExchange(),
+            new PoloniexExchange(),
             // new JbexExchange(),
+            // new BybitExchange(),
+
+
         ];
     }
 }
